@@ -3,6 +3,7 @@ package com.example.techfix_mobiel_app.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,9 +13,15 @@ import java.util.List;
 
 public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.ViewHolder> {
     private List<SparePartEntity> partList;
+    private OnDeleteClickListener deleteClickListener;
 
-    public InventoryAdapter(List<SparePartEntity> partList) {
+    public interface OnDeleteClickListener {
+        void onDeleteClick(SparePartEntity part);
+    }
+
+    public InventoryAdapter(List<SparePartEntity> partList, OnDeleteClickListener listener) {
         this.partList = partList;
+        this.deleteClickListener = listener;
     }
 
     public void setPartList(List<SparePartEntity> partList) {
@@ -34,6 +41,12 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
         SparePartEntity part = partList.get(position);
         holder.tvName.setText(part.partName + " (" + part.branchName + ")");
         holder.tvDetails.setText("Qty: " + part.stockQuantity + " | Price: $" + part.unitPrice);
+
+        holder.btnDelete.setOnClickListener(v -> {
+            if (deleteClickListener != null) {
+                deleteClickListener.onDeleteClick(part);
+            }
+        });
     }
 
     @Override
@@ -43,10 +56,13 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvDetails;
+        Button btnDelete;
+
         ViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvPartName);
             tvDetails = itemView.findViewById(R.id.tvPartDetails);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
         }
     }
 }

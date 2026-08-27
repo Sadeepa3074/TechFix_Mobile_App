@@ -11,14 +11,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TechFix_Mobiel_App">
+
+        <!-- Admin Main Dashboard (Launches First) -->
         <activity
-            android:name=".activities.member4.ManageInventoryActivity"
+            android:name=".activities.member4.AdminDashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Manage Inventory Screen -->
+        <activity
+            android:name=".activities.member4.ManageInventoryActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
