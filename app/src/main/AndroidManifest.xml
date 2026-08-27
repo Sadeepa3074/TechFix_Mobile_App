@@ -12,11 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TechFix_Mobiel_App">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.member4.ManageInventoryActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
