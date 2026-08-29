@@ -1,4 +1,4 @@
-package com.example.techfix_mobiel_app.utils;
+package com.example.techfix_mobiel_app.activities.member3.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;

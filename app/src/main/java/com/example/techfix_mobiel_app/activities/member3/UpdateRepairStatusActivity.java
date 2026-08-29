@@ -8,60 +8,75 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.techfix_mobiel_app.R;
+import com.example.techfix_mobiel_app.activities.member3.database.AppDatabase;
+import com.example.techfix_mobiel_app.activities.member3.database.entities.RepairJobEntity;
+
+import java.util.concurrent.Executors;
 
 public class UpdateRepairStatusActivity extends AppCompatActivity {
 
-    private EditText etStatus, etNotes;
-    private ImageView ivDevicePhoto;
-    private Button btnCapture, btnSubmit;
-    private Bitmap capturedBitmap;
-
-    private final ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    Bundle extras = result.getData().getExtras();
-                    if (extras != null) {
-                        capturedBitmap = (Bitmap) extras.get("data");
-                        ivDevicePhoto.setImageBitmap(capturedBitmap);
-                    }
-                }
-            }
-    );
+    private static final int CAMERA_REQUEST_CODE = 100;
+    private EditText etDeviceName, etStatus;
+    private Button btnCapturePhoto, btnSaveJob;
+    private ImageView imgPreview;
+    private AppDatabase db;
+    private String currentPhotoPath = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_repair_status);
 
+        db = AppDatabase.getInstance(this);
+
+        etDeviceName = findViewById(R.id.etDeviceName);
         etStatus = findViewById(R.id.etStatus);
-        etNotes = findViewById(R.id.etNotes);
-        ivDevicePhoto = findViewById(R.id.ivDevicePhoto);
-        btnCapture = findViewById(R.id.btnCapturePhoto);
-        btnSubmit = findViewById(R.id.btnSubmitUpdate);
+        btnCapturePhoto = findViewById(R.id.btnCapturePhoto);
+        btnSaveJob = findViewById(R.id.btnSaveJob);
+        imgPreview = findViewById(R.id.imgPreview);
 
-        btnCapture.setOnClickListener(v -> {
-            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                cameraLauncher.launch(takePictureIntent);
-            } else {
-                Toast.makeText(this, "No camera app found", Toast.LENGTH_SHORT).show();
-            }
-        });
+        btnCapturePhoto.setOnClickListener(v -> openCamera());
+        btnSaveJob.setOnClickListener(v -> saveJobToDatabase());
+    }
 
-        btnSubmit.setOnClickListener(v -> {
-            String status = etStatus.getText().toString().trim();
-            if (status.isEmpty()) {
-                Toast.makeText(this, "Please enter a status", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            Toast.makeText(this, "Repair status updated successfully!", Toast.LENGTH_SHORT).show();
-            finish();
+    private void openCamera() {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
+            imgPreview.setImageBitmap(imageBitmap);
+            currentPhotoPath = "captured_image_placeholder";
+        }
+    }
+
+    private void saveJobToDatabase() {
+        String device = etDeviceName.getText().toString().trim();
+        String status = etStatus.getText().toString().trim();
+
+        if (device.isEmpty() || status.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        RepairJobEntity job = new RepairJobEntity(device, status, currentPhotoPath);
+
+        Executors.newSingleThreadExecutor().execute(() -> {
+            db.repairJobDao().insertJob(job);
+            runOnUiThread(() -> {
+                Toast.makeText(getApplicationContext(), "Repair Job Saved!", Toast.LENGTH_SHORT).show();
+                finish();
+            });
         });
     }
 }
