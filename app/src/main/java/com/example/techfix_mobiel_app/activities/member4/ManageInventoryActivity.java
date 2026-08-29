@@ -14,6 +14,7 @@ import com.example.techfix_mobiel_app.database.AppDatabase;
 import com.example.techfix_mobiel_app.database.entities.SparePartEntity;
 
 import java.util.List;
+import java.util.concurrent.Executors;
 
 public class ManageInventoryActivity extends AppCompatActivity {
 
@@ -58,25 +59,37 @@ public class ManageInventoryActivity extends AppCompatActivity {
         double price = Double.parseDouble(priceStr);
 
         SparePartEntity newPart = new SparePartEntity(name, branch, qty, price);
-        db.inventoryDao().insertPart(newPart);
 
-        Toast.makeText(this, "Saved locally in SQLite!", Toast.LENGTH_SHORT).show();
-        clearInputs();
-        loadInventoryData();
+        Executors.newSingleThreadExecutor().execute(() -> {
+            db.inventoryDao().insertPart(newPart);
+            runOnUiThread(() -> {
+                Toast.makeText(ManageInventoryActivity.this, "Saved locally in SQLite!", Toast.LENGTH_SHORT).show();
+                clearInputs();
+                loadInventoryData();
+            });
+        });
     }
 
     private void loadInventoryData() {
-        List<SparePartEntity> list = db.inventoryDao().getAllParts();
-        if (adapter == null) {
-            adapter = new InventoryAdapter(list, part -> {
-                db.inventoryDao().deletePart(part);
-                Toast.makeText(ManageInventoryActivity.this, "Item deleted", Toast.LENGTH_SHORT).show();
-                loadInventoryData();
+        Executors.newSingleThreadExecutor().execute(() -> {
+            List<SparePartEntity> list = db.inventoryDao().getAllParts();
+            runOnUiThread(() -> {
+                if (adapter == null) {
+                    adapter = new InventoryAdapter(list, part -> {
+                        Executors.newSingleThreadExecutor().execute(() -> {
+                            db.inventoryDao().deletePart(part);
+                            runOnUiThread(() -> {
+                                Toast.makeText(ManageInventoryActivity.this, "Item deleted", Toast.LENGTH_SHORT).show();
+                                loadInventoryData();
+                            });
+                        });
+                    });
+                    rvInventory.setAdapter(adapter);
+                } else {
+                    adapter.setPartList(list);
+                }
             });
-            rvInventory.setAdapter(adapter);
-        } else {
-            adapter.setPartList(list);
-        }
+        });
     }
 
     private void clearInputs() {

@@ -3,15 +3,18 @@ package com.example.techfix_mobiel_app.database.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
-import java.util.List;
 
 import com.example.techfix_mobiel_app.database.entities.SparePartEntity;
 
+import java.util.List;
+
 @Dao
 public interface InventoryDao {
-    @Insert
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPart(SparePartEntity part);
 
     @Update
