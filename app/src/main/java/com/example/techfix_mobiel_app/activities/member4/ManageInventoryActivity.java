@@ -55,19 +55,23 @@ public class ManageInventoryActivity extends AppCompatActivity {
             return;
         }
 
-        int qty = Integer.parseInt(qtyStr);
-        double price = Double.parseDouble(priceStr);
+        try {
+            int qty = Integer.parseInt(qtyStr);
+            double price = Double.parseDouble(priceStr);
 
-        SparePartEntity newPart = new SparePartEntity(name, branch, qty, price);
+            SparePartEntity newPart = new SparePartEntity(name, branch, qty, price);
 
-        Executors.newSingleThreadExecutor().execute(() -> {
-            db.inventoryDao().insertPart(newPart);
-            runOnUiThread(() -> {
-                Toast.makeText(ManageInventoryActivity.this, "Saved locally in SQLite!", Toast.LENGTH_SHORT).show();
-                clearInputs();
-                loadInventoryData();
+            Executors.newSingleThreadExecutor().execute(() -> {
+                db.inventoryDao().insertPart(newPart);
+                runOnUiThread(() -> {
+                    Toast.makeText(ManageInventoryActivity.this, "Saved locally in SQLite!", Toast.LENGTH_SHORT).show();
+                    clearInputs();
+                    loadInventoryData();
+                });
             });
-        });
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Please enter valid numeric values for Quantity and Price", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void loadInventoryData() {

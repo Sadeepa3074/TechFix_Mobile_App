@@ -11,18 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TechFix_Mobiel_App">
 
-        <!-- Admin Main Dashboard (Launches First) -->
+        <!-- Member 4 Activities -->
         <activity
             android:name=".activities.member4.AdminDashboardActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <!-- Manage Inventory Screen -->
         <activity
             android:name=".activities.member4.ManageInventoryActivity"
             android:exported="false" />
