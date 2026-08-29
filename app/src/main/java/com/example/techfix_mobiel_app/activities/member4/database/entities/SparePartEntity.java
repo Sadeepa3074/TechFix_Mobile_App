@@ -1,4 +1,4 @@
-package com.example.techfix_mobiel_app.database.entities;
+package com.example.techfix_mobiel_app.activities.member4.database.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

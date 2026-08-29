@@ -1,12 +1,12 @@
-package com.example.techfix_mobiel_app.database;
+package com.example.techfix_mobiel_app.activities.member4.database;
 
 import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.techfix_mobiel_app.database.dao.InventoryDao;
-import com.example.techfix_mobiel_app.database.entities.SparePartEntity;
+import com.example.techfix_mobiel_app.activities.member4.database.dao.InventoryDao;
+import com.example.techfix_mobiel_app.activities.member4.database.entities.SparePartEntity;
 
 @Database(entities = {SparePartEntity.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {

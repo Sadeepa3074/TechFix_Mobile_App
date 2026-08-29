@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.techfix_mobiel_app.R;
-import com.example.techfix_mobiel_app.adapters.InventoryAdapter;
-import com.example.techfix_mobiel_app.database.AppDatabase;
-import com.example.techfix_mobiel_app.database.entities.SparePartEntity;
+import com.example.techfix_mobiel_app.activities.member4.adapters.InventoryAdapter;
+import com.example.techfix_mobiel_app.activities.member4.database.AppDatabase;
+import com.example.techfix_mobiel_app.activities.member4.database.entities.SparePartEntity;
 
 import java.util.List;
 import java.util.concurrent.Executors;

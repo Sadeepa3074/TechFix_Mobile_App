@@ -1,4 +1,4 @@
-package com.example.techfix_mobiel_app.adapters;
+package com.example.techfix_mobiel_app.activities.member4.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.techfix_mobiel_app.R;
-import com.example.techfix_mobiel_app.database.entities.SparePartEntity;
+import com.example.techfix_mobiel_app.activities.member4.database.entities.SparePartEntity;
 import java.util.List;
 
 public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.ViewHolder> {
