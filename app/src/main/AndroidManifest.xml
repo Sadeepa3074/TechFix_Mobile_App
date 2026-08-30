@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Camera hardware permission for capturing fault photos -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <!-- Location Permissions for Google Maps / GPS -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -17,6 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TechFix_Mobiel_App">
 
+        <!-- Member 3 Activities -->
+
         <!-- Main Launcher Activity -->
 
         <!-- Google Maps API Key Setup -->
@@ -26,6 +31,12 @@
 
         <!-- Main Launcher Activity -->
         <activity
+            android:name=".activities.member3.TechnicianDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.member3.UpdateRepairStatusActivity"
+            android:exported="false" />
+
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
