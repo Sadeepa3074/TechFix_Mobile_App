@@ -11,15 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TechFix_Mobiel_App">
+
+        <!-- Main Launcher Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Member 1 Activities -->
+        <activity
+            android:name=".activities.member1.database.LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.member1.database.RegisterActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
