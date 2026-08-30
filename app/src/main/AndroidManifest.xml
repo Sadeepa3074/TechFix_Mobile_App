@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Location Permissions for Google Maps / GPS -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,6 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TechFix_Mobiel_App">
+
+        <!-- Main Launcher Activity -->
+
+        <!-- Google Maps API Key Setup -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_GOOGLE_MAPS_API_KEY_HERE" />
 
         <!-- Main Launcher Activity -->
         <activity
@@ -29,6 +41,20 @@
 
         <activity
             android:name=".activities.member1.database.RegisterActivity"
+            android:exported="false" />
+
+
+        <!-- Member 1 Activities -->
+        <activity
+            android:name=".activities.member1.database.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.member1.database.RegisterActivity"
+            android:exported="false" />
+
+        <!-- Member 2 Activity -->
+        <activity
+            android:name=".activities.member2.database.QuotationActivity"
             android:exported="false" />
 
     </application>
