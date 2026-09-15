@@ -3,29 +3,28 @@ package com.example.techfix_mobiel_app.activities.member4.database.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.techfix_mobiel_app.activities.member4.database.entities.SparePartEntity;
+import com.example.techfix_mobiel_app.activities.member4.database.entities.InventoryEntity;
 
 import java.util.List;
 
 @Dao
 public interface InventoryDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertPart(SparePartEntity part);
+    @Query("SELECT * FROM inventory_items")
+    List<InventoryEntity> getAllInventory();
+
+    @Query("SELECT * FROM inventory_items WHERE branchId = :branchId")
+    List<InventoryEntity> getInventoryByBranch(int branchId);
+
+    @Insert
+    void insertInventory(InventoryEntity item);
 
     @Update
-    void updatePart(SparePartEntity part);
+    void update(InventoryEntity item);
 
     @Delete
-    void deletePart(SparePartEntity part);
-
-    @Query("SELECT * FROM spare_parts WHERE branchName = :branch")
-    List<SparePartEntity> getPartsByBranch(String branch);
-
-    @Query("SELECT * FROM spare_parts")
-    List<SparePartEntity> getAllParts();
+    void deleteInventory(InventoryEntity item);
 }

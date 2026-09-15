@@ -9,14 +9,7 @@ public class SparePartEntity {
     public int id;
 
     public String partName;
-    public String branchName; // "Colombo" or "Galle"
-    public int stockQuantity;
-    public double unitPrice;
-
-    public SparePartEntity(String partName, String branchName, int stockQuantity, double unitPrice) {
-        this.partName = partName;
-        this.branchName = branchName;
-        this.stockQuantity = stockQuantity;
-        this.unitPrice = unitPrice;
-    }
+    public String category; // e.g. Phones, Laptops
+    public int quantity;
+    public double price;
 }
