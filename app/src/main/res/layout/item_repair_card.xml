@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardBackgroundColor="#161618"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/dotActive1"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_centerVertical="true"
+                app:cardBackgroundColor="#BB86FC"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="0dp" />
+
+            <TextView
+                android:id="@+id/tvStatusText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/dotActive1"
+                android:text="RECEIVED"
+                android:textColor="#BB86FC"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textAllCaps="true" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                app:cardBackgroundColor="#222222"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp">
+                <TextView
+                    android:id="@+id/tvRepairId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:text="TF-0000"
+                    android:textColor="#888888"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvDeviceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Smartphone"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvIssueDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Screen Damage"
+            android:textColor="#888888"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView android:id="@+id/step1Icon" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" app:tint="#444444" />
+            <View android:id="@+id/line1" android:layout_width="0dp" android:layout_height="3dp" android:layout_weight="1" android:background="#333333" android:layout_marginHorizontal="4dp" />
+
+            <ImageView android:id="@+id/step2Icon" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" app:tint="#444444" />
+            <View android:id="@+id/line2" android:layout_width="0dp" android:layout_height="3dp" android:layout_weight="1" android:background="#333333" android:layout_marginHorizontal="4dp" />
+
+            <ImageView android:id="@+id/step3Icon" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" app:tint="#444444" />
+            <View android:id="@+id/line3" android:layout_width="0dp" android:layout_height="3dp" android:layout_weight="1" android:background="#333333" android:layout_marginHorizontal="4dp" />
+
+            <ImageView android:id="@+id/step4Icon" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/checkbox_on_background" app:tint="#444444" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Received" android:textSize="11sp" android:textColor="#888888" />
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Diagnosed" android:textSize="11sp" android:textColor="#888888" android:gravity="center" />
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="In Repair" android:textSize="11sp" android:textColor="#888888" android:gravity="center" />
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Ready" android:textSize="11sp" android:textColor="#888888" android:gravity="end" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDeviceCollected"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:text="Device Collected / Close"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:backgroundTint="#00E676"
+            app:cornerRadius="12dp"
+            app:elevation="0dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="#222222" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_centerVertical="true"
+                android:src="@android:drawable/ic_menu_mylocation"
+                app:tint="#D81B60" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tvBranchName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TechFix Branch"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvBookingDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pending"
+                    android:textColor="#888888"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btnDirections"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:padding="8dp"
+                android:text="Get Directions →"
+                android:textColor="#BB86FC"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#161618"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#2A2A2A"
+    app:strokeWidth="1dp"
+    android:layout_marginBottom="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top Row: Status badge & Repair ID -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:id="@+id/tvHistoryStatusBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#1E3324"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:text="Collected"
+                android:textColor="#4CAF50"
+                android:textSize="11sp"
+                android:textStyle="bold"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/tvHistoryRepairId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TF-4750"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Device Name & Issue -->
+        <TextView
+            android:id="@+id/tvHistoryDeviceName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Samsung Galaxy S23"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="2dp"/>
+
+        <TextView
+            android:id="@+id/tvHistoryIssueDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Charging port repair"
+            android:textColor="#888888"
+            android:textSize="13sp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Bottom Row: Date & Price -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvHistoryDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aug 14, 2026"
+                android:textColor="#888888"
+                android:textSize="12sp"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/tvHistoryPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$85"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
